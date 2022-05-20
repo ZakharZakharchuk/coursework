@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Teams</title>
+</head>
+<body>
+<div th:insert="~{fragments/menu::#nav-menu}"></div>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="team : ${teams}">
+        <td th:text="${team.name}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

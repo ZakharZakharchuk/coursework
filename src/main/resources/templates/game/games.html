@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<div th:insert="~{fragments/menu::#nav-menu}"></div>-->
+<form th:method="POST" th:action="@{/find}" th:object="${teamDTO}">
+    <label for="name">Enter firstTeam: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <input type="submit" value="Find!"/>
+</form>
+<table>
+    <thead>
+    <tr>
+        <!--        <th>Date</th>-->
+        <th>Team1</th>
+        <th>Team2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="game : ${games}">
+        <!--        <td th:text="${game.gameDate}"></td>-->
+        <td th:text="${game.firstTeam}"></td>
+        <td th:text="${game.secondTeam}"></td>
+        <td>
+            <a th:href="@{delete/{id}(id=${game.id})}">Delete game</a>
+            <a th:href="@{update/{id}(id=${game.id})}">Update game</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

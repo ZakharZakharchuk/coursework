@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+</head>
+<body>
+<!--<div th:insert="~{fragments/menu::#nav-menu}"></div>-->
+<form th:method="POST" th:action="@{/update}" th:object="${gameDTO}">
+    <!--    <label for="gameDate">Enter date: </label>-->
+    <!--    <input type="date" id="gameDate"/>-->
+    <!--    <br/>-->
+    <label for="firstTeam">Enter firstTeam: </label>
+    <input type="text" th:value="${game.firstTeam}" th:field="*{firstTeam}" id="firstTeam"/>
+    <br/>
+    <label for="secondTeam">Enter firstTeam: </label>
+    <input type="text" th:value="${game.secondTeam}" th:field="*{secondTeam}" id="secondTeam"/>
+    <br/>
+    <input type="hidden" id="id" name="id" th:value="${game.id}">
+    <input type="submit" value="Add!"/>
+</form>
+</form>
+</body>
+</html>
