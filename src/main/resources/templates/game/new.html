@@ -5,16 +5,16 @@
     <title>NewGame</title>
 </head>
 <body>
-<!--<div th:insert="~{fragments/menu::#nav-menu}"></div>-->
+<div th:insert="~{menu::#nav-menu}"></div>
 <form th:method="POST" th:action="@{/add}" th:object="${gameDTO}">
-<!--    <label for="gameDate">Enter date: </label>-->
-<!--    <input type="date" id="gameDate"/>-->
-<!--    <br/>-->
+    <label for="gameDate">Enter date: </label>
+    <input type="date" th:field="*{gameDate}" id="gameDate" required/>
+    <br/>
     <label for="firstTeam">Enter firstTeam: </label>
-    <input type="text" th:field="*{firstTeam}" id="firstTeam"/>
+    <input type="text" th:field="*{firstTeam}" id="firstTeam" required/>
     <br/>
     <label for="secondTeam">Enter firstTeam: </label>
-    <input type="text" th:field="*{secondTeam}" id="secondTeam"/>
+    <input type="text" th:field="*{secondTeam}" id="secondTeam" required/>
     <br/>
     <input type="submit" value="Add!"/>
 </form>

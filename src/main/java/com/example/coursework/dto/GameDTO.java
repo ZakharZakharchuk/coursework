@@ -5,11 +5,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class GameDTO {
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date gameDate;
     private Long id;
     private String firstTeam;
     private String secondTeam;
+    private String winner;
+
+    public GameDTO(Date gameDate, String firstTeam, String secondTeam, String winner) {
+        this.firstTeam = firstTeam;
+        this.secondTeam = secondTeam;
+        this.winner = winner;
+        this.gameDate = gameDate;
+    }
 
     public GameDTO(Date gameDate, String firstTeam, String secondTeam) {
         this.gameDate = gameDate;
@@ -17,10 +25,12 @@ public class GameDTO {
         this.secondTeam = secondTeam;
     }
 
-    public GameDTO(Long id, String firstTeam, String secondTeam) {
+    public GameDTO(Long id, Date gameDate, String firstTeam, String secondTeam, String winner) {
         this.id = id;
+        this.gameDate = gameDate;
         this.firstTeam = firstTeam;
         this.secondTeam = secondTeam;
+        this.winner = winner;
     }
 
     public GameDTO() {
@@ -56,5 +66,13 @@ public class GameDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
     }
 }

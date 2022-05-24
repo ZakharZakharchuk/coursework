@@ -5,16 +5,19 @@
     <title>Update</title>
 </head>
 <body>
-<!--<div th:insert="~{fragments/menu::#nav-menu}"></div>-->
+<div th:insert="~{menu::#nav-menu}"></div>
 <form th:method="POST" th:action="@{/update}" th:object="${gameDTO}">
-    <!--    <label for="gameDate">Enter date: </label>-->
-    <!--    <input type="date" id="gameDate"/>-->
-    <!--    <br/>-->
-    <label for="firstTeam">Enter firstTeam: </label>
-    <input type="text" th:value="${game.firstTeam}" th:field="*{firstTeam}" id="firstTeam"/>
+    <label for="gameDate">Enter date: </label>
+    <input type="date"  th:value="game." th:field="*{gameDate}" id="gameDate" required/>
     <br/>
-    <label for="secondTeam">Enter firstTeam: </label>
-    <input type="text" th:value="${game.secondTeam}" th:field="*{secondTeam}" id="secondTeam"/>
+    <label for="firstTeam">Enter firstTeam: </label>
+    <input type="text" th:field="*{firstTeam}" id="firstTeam" required/>
+    <br/>
+    <label for="secondTeam">Enter secondTeam: </label>
+    <input type="text" th:field="*{secondTeam}" id="secondTeam" required/>
+    <br/>
+    <label for="winner">Enter winner: </label>
+    <input type="text" th:field="*{winner}" id="winner"/>
     <br/>
     <input type="hidden" id="id" name="id" th:value="${game.id}">
     <input type="submit" value="Add!"/>

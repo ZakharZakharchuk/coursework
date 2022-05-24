@@ -2,18 +2,13 @@ package com.example.coursework.controllers;
 
 import com.example.coursework.dto.GameDTO;
 import com.example.coursework.dto.TeamDTO;
-import com.example.coursework.models.Game;
-import com.example.coursework.models.Team;
 import com.example.coursework.repositories.GameRepository;
 import com.example.coursework.services.game.GameService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
 
 @Controller
 public class GameController {
@@ -43,12 +38,6 @@ public class GameController {
         gameService.addGame(gameDTO);
         return "redirect:/";
     }
-
-//    @GetMapping("/save")
-//    public String saveGame(Model model) {
-//        gameRepository.save(new Game(List.of(new Team("Team1"), new Team("Team2"))));
-//        return "redirect:/";
-//    }
 
     @PostMapping("/find")
     public String findGame(TeamDTO teamDTO, Model model) {

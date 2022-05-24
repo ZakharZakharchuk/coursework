@@ -1,7 +1,6 @@
 package com.example.coursework.services.game;
 
 import com.example.coursework.dto.GameDTO;
-import com.example.coursework.models.Game;
 
 import java.util.List;
 

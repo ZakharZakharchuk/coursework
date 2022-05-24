@@ -8,8 +8,16 @@ public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
+    private String login;
     private String password;
+
+    public Admin(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
+    public Admin() {
+    }
 
     public Long getId() {
         return id;
@@ -19,12 +27,12 @@ public class Admin {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLogin(String username) {
+        this.login = username;
     }
 
     public String getPassword() {

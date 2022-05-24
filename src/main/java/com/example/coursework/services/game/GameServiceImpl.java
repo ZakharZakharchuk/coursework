@@ -2,15 +2,16 @@ package com.example.coursework.services.game;
 
 import com.example.coursework.dto.GameDTO;
 import com.example.coursework.models.Game;
+import com.example.coursework.models.Result;
 import com.example.coursework.models.Team;
 import com.example.coursework.repositories.GameRepository;
 import com.example.coursework.repositories.TeamRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,7 +34,8 @@ public class GameServiceImpl implements GameService {
     public boolean addGame(GameDTO gameDTO) {
         Team firstTeam = teamRepository.findByName(gameDTO.getFirstTeam());
         Team secondTeam = teamRepository.findByName(gameDTO.getSecondTeam());
-        gameRepository.save(new Game(List.of(firstTeam, secondTeam)));
+        Date gameDate = gameDTO.getGameDate();
+        gameRepository.save(new Game(gameDate, List.of(firstTeam, secondTeam)));
         return true;
     }
 
@@ -62,21 +64,27 @@ public class GameServiceImpl implements GameService {
 
     @Transactional
     public void updateGame(GameDTO gameDTO) {
-        System.out.println(gameDTO.getId());
-        System.out.println(gameDTO.getFirstTeam());
-        System.out.println(gameDTO.getSecondTeam());
+        System.out.println(gameDTO.getGameDate());
         Team firstTeam = teamRepository.findByName(gameDTO.getFirstTeam());
         Team secondTeam = teamRepository.findByName(gameDTO.getSecondTeam());
         List<Team> teams = List.of(firstTeam, secondTeam);
-        gameRepository.updateGame(gameDTO.getId(), teams);
+        deleteGame(gameDTO.getId());
+        gameRepository.save(new Game(gameDTO.getId(), gameDTO.getGameDate(), teams, new Result(teamRepository.findByName(gameDTO.getWinner()))));
     }
 
     private GameDTO mapGame(Game game) {
-//        Date gameDate = game.getGameDate();
+        Date gameDate = game.getGameDate();
         Long id = game.getId();
         List<Team> teams = game.getTeams().stream().toList();
         String firstTeam = teams.get(0).getName();
         String secondTeam = teams.get(1).getName();
-        return new GameDTO(id, firstTeam, secondTeam);
+        Result result = game.getResult();
+        if (result != null)
+            return new GameDTO(id, gameDate, firstTeam, secondTeam, result.getWinner().getName());
+        else{
+            return new GameDTO(id, gameDate, firstTeam, secondTeam, null);
+        }
+
     }
+
 }

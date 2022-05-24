@@ -9,13 +9,14 @@ public class Result {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne()
-    @JoinColumn(name = "games_id")
-    private Game game;
-    @OneToOne()
     @JoinColumn(name = "teams_id")
     private Team winner;
 
     public Result() {
+    }
+
+    public Result(Team winner) {
+        this.winner = winner;
     }
 
     public Long getId() {
@@ -24,14 +25,6 @@ public class Result {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
     }
 
     public Team getWinner() {
